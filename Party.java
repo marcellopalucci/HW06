@@ -1,5 +1,4 @@
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.io.File;
@@ -19,7 +18,7 @@ public class Party {
      * @throws FileNotFoundException exception which is thrown if a file is erroneous
      * @throws QuestNotFoundException exception which is thrown if a quest is not found
      */
-    public static void main(String[] args) throws IOException, QuestNotFoundException {
+    public static void main(String[] args) throws FileNotFoundException, QuestNotFoundException {
         ArrayList<PartyMember> partyArray = new ArrayList<>();
         String partyFilePath = "TestParty.csv";
         Warrior warrior1 = new Warrior("John", 100, 9, "M4A1", 5);
@@ -129,29 +128,34 @@ public class Party {
         int partyQuestLevel = 0;
         int questIndex = 0;
         File file = new File("quest.csv");
-        if (file == null || !file.exists()) {
-            return false;
-        }
-        Scanner scanLine = new Scanner(file);
-        while (scanLine.hasNextLine()) {
-            String line = scanLine.nextLine();
-            if (line.contains(questToSelect)) {
-                partyQuestLevel = partyQuestLevel(partyMembers);
-                String[] splitStringColon = line.split(": ");
-                String questName = splitStringColon[0];
-                String[] splitStringComma = splitStringColon[1].split(", ");
-                int questLevel = Integer.parseInt(splitStringComma[0]);
-                int reward = Integer.parseInt(splitStringComma[1]);
-                if (questLevel < partyQuestLevel) {
-                    System.out.println("Success! Your party gained "
-                            + reward + " coins. This calls for a trip to the Tavern!");
-                    return removedQuest(questName);
-                } else if (questLevel > partyQuestLevel) {
-                    System.out.println("Failure... Your party was defeated. Better Luck Next Time!");
-                    return false;
+
+        try{
+            Scanner scanLine = new Scanner(file);
+            while (scanLine.hasNextLine()) {
+                String line = scanLine.nextLine();
+                if (line.contains(questToSelect)) {
+                    partyQuestLevel = partyQuestLevel(partyMembers);
+                    String[] splitStringColon = line.split(": ");
+                    String questName = splitStringColon[0];
+                    String[] splitStringComma = splitStringColon[1].split(", ");
+                    int questLevel = Integer.parseInt(splitStringComma[0]);
+                    int reward = Integer.parseInt(splitStringComma[1]);
+                    if (questLevel < partyQuestLevel) {
+                        System.out.println("Success! Your party gained "
+                                + reward + " coins. This calls for a trip to the Tavern!");
+                        return removedQuest(questName);
+                    } else if (questLevel > partyQuestLevel) {
+                        System.out.println("Failure... Your party was defeated. Better Luck Next Time!");
+                        return false;
+                    }
                 }
             }
+        } catch (FileNotFoundException e){
+            System.out.println(e.getMessage());
+            return false;
         }
+
+
         return true;
     }
     private static int partyQuestLevel(ArrayList<PartyMember> partyMembers) {

@@ -4,3 +4,9 @@ Class: Warrior, Name: Almond, Health: 57, Base Attack: 10, Weapon: Tree, Armor C
 Class: Mage, Name: Borat, Health: 100, Base Attack: 50, Spell Attack: 60, Spell Slots: 1
 Class: Mage, Name: Yoda, Health: 50, Base Attack: 2, Spell Attack: 3, Spell Slots: 1
 Class: Mage, Name: Azamat, Health: 100, Base Attack: 30, Spell Attack: 49, Spell Slots: 50
+Class: Warrior, Name: John, Health: 100, Base Attack: 9, Weapon: M4A1, Armor Class: 5
+Class: Warrior, Name: Josh, Health: 4, Base Attack: 3, Weapon: Dagger, Armor Class: 9
+Class: Warrior, Name: Almond, Health: 57, Base Attack: 10, Weapon: Tree, Armor Class: 3
+Class: Mage, Name: Borat, Health: 100, Base Attack: 50, Spell Attack: 60, Spell Slots: 1
+Class: Mage, Name: Yoda, Health: 50, Base Attack: 2, Spell Attack: 3, Spell Slots: 1
+Class: Mage, Name: Azamat, Health: 100, Base Attack: 30, Spell Attack: 49, Spell Slots: 50
