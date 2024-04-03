@@ -3,7 +3,7 @@ public class Mage extends PartyMember {
     private int spellSlots;
     public Mage (String characterName, int health, int baseAttack, int spellAttack, int spellSlots) throws IllegalArgumentException{
         super(characterName, health, baseAttack);
-        if (spellAttack < baseAttack || spellAttack > (baseAttack * 2)){
+        if (spellAttack < super.getBaseAttack() || spellAttack > (super.getBaseAttack() * 2)){
             throw new IllegalArgumentException("Invalid spell attack");
         } else{
             this.spellAttack = spellAttack;
@@ -21,14 +21,33 @@ public class Mage extends PartyMember {
     }
     @Override
     public boolean equals(Object o){
-        if (o == null){
-            return false;
-        }
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
         Mage compareMage = (Mage) o;
-        return super.equals(o) && this.spellSlots == compareMage.spellSlots && this.spellAttack == compareMage.spellAttack;
+        return (super.getCharacterName().equals(compareMage.getCharacterName()) &&
+                super.getHealth() == compareMage.getHealth() &&
+                super.getBaseAttack() == compareMage.getBaseAttack() &&
+                this.spellAttack == compareMage.spellAttack &&
+                this.spellSlots == compareMage.spellSlots);
     }
     @Override
     public int questLevel(){
         return super.questLevel() + (spellSlots * spellAttack);
+    }
+
+    public int getSpellAttack() {
+        return spellAttack;
+    }
+
+    public void setSpellAttack(int spellAttack) {
+        this.spellAttack = spellAttack;
+    }
+
+    public int getSpellSlots() {
+        return spellSlots;
+    }
+
+    public void setSpellSlots(int spellSlots) {
+        this.spellSlots = spellSlots;
     }
 }

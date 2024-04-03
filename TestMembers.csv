@@ -1,0 +1,15 @@
+Name: Warrior01, Health: 0, Base Attack: 0, Weapon: sword, Armor Class: 0
+Name: Warrior02, Health: 50, Base Attack: 0, Weapon: spear, Armor Class: 0
+Name: Warrior03, Health: 50, Base Attack: 50, Weapon: lance, Armor Class: 0
+Name: Warrior04, Health: 50, Base Attack: 50, Weapon: bola, Armor Class: 5
+Name: Warrior05, Health: 50, Base Attack: 50, Weapon: longbow, Armor Class: 10
+Name: Warrior06, Health: 100, Base Attack: 50, Weapon: Mace, Armor Class: 10
+Name: Warrior07, Health: 100, Base Attack: 200, Weapon: mace, Armor Class: 10
+Name: Mage01, Health: 2, Base Attack: 2, Spell Attack: 3, Spell slots: 1
+Name: Mage02, Health: 50, Base Attack: 2, Spell Attack: 3, Spell slots: 1
+Name: Mage03, Health: 50, Base Attack: 50, Spell Attack: 51, Spell slots: 1
+Name: Mage04, Health: 50, Base Attack: 50, Spell Attack: 99, Spell slots: 1
+Name: Mage05, Health: 50, Base Attack: 50, Spell Attack: 99, Spell slots: 25
+Name: Mage06, Health: 100, Base Attack: 50, Spell Attack: 99, Spell slots: 50
+Name: Mage07, Health: 100, Base Attack: 200, Spell Attack: 399, Spell slots: 50
+Name: John, Health: 100, Base Attack: 100, Weapon: m4a1, Armor Class: 5
