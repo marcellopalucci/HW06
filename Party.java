@@ -1,4 +1,5 @@
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.FileAlreadyExistsException;
 import java.util.ArrayList;
@@ -7,7 +8,7 @@ import java.util.Collection;
 import java.util.Scanner;
 
 public class Party {
-    public static void main(String[] args) throws FileNotFoundException, QuestNotFoundException {
+    public static void main(String[] args) throws IOException, QuestNotFoundException {
         //recruitParty("src\\HW06\\TestMembersClean.csv");
         Warrior testWarrior1 = new Warrior("John", 100, 9, "m4a1", 5);
         Warrior warrior2 = new Warrior("Josh", 4, 3, "dager", 9);
@@ -17,12 +18,9 @@ public class Party {
         testArray.add(testWarrior1);
         testArray.add(warrior2);
         testArray.add(warrior3);
-
         partyRoster("src\\HW06\\TestParty.csv", testArray);
        // partyQuestLevel(recruitParty("src\\HW06\\TestMembersClean.csv"));
-
         getQuest("Runethorn Shrine", recruitParty("src\\HW06\\TestMembersClean.csv"));
-
     }
     public static ArrayList<PartyMember> recruitParty (String filePath) throws FileNotFoundException {
         File file = new File(filePath);
@@ -57,16 +55,17 @@ public class Party {
         throw new InvalidPartyMemberException();
     }
 
-    public static boolean partyRoster(String filePath, ArrayList<PartyMember> partyMembers) throws FileNotFoundException {
+    public static boolean partyRoster(String filePath, ArrayList<PartyMember> partyMembers) throws IOException {
         ArrayList<PartyMember> tempArrayList = new ArrayList<>();
         File file = new File(filePath);
-        Scanner readCSV = new Scanner(file);
         if (!file.exists()){
+            file.createNewFile();
             throw new FileNotFoundException();
         }
+        Scanner readCSV = new Scanner(file);
         try{
            // recruitParty("src\\HW06\\TestMembersClean.csv");
-            tempArrayList = recruitParty("src\\HW06\\TestMembersClean.csv");
+            tempArrayList = recruitParty(filePath);
             tempArrayList.addAll(partyMembers);
             PrintWriter output = new PrintWriter(filePath);
             for (PartyMember i : tempArrayList){
@@ -131,7 +130,6 @@ public class Party {
                 if (!questLine.contains(deleteQuest)){
                     quests.add(questLine);
                 }
-
             }
             PrintWriter output = new PrintWriter(oldFile);
             for (String i : quests){
