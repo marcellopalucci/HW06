@@ -9,13 +9,20 @@ import java.util.Scanner;
 public class Party {
     public static void main(String[] args) throws FileNotFoundException, QuestNotFoundException {
         //recruitParty("src\\HW06\\TestMembersClean.csv");
-        Warrior testWarrior1 = new Warrior("John", 100, 100, "m4a1", 5);
+        Warrior testWarrior1 = new Warrior("John", 100, 9, "m4a1", 5);
+        Warrior warrior2 = new Warrior("Josh", 4, 3, "dager", 9);
+        Warrior warrior3 = new Warrior("Almond", 57, 10, "Tree", 3);
+
         ArrayList<PartyMember> testArray = new ArrayList<>();
         testArray.add(testWarrior1);
-        partyRoster("src\\HW06\\TestMembers.csv", testArray);
+        testArray.add(warrior2);
+        testArray.add(warrior3);
+
+        partyRoster("src\\HW06\\TestParty.csv", testArray);
        // partyQuestLevel(recruitParty("src\\HW06\\TestMembersClean.csv"));
 
         getQuest("Runethorn Shrine", recruitParty("src\\HW06\\TestMembersClean.csv"));
+
     }
     public static ArrayList<PartyMember> recruitParty (String filePath) throws FileNotFoundException {
         File file = new File(filePath);
