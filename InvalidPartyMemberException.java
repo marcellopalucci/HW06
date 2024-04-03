@@ -10,4 +10,12 @@ public class InvalidPartyMemberException extends RuntimeException {
     public InvalidPartyMemberException() {
         super("Invalid party member!");
     }
+
+    /**
+     * Constructor which calls RunTimeException
+     * @param m String which represents the message to be sent to its super constructor.
+     */
+    public InvalidPartyMemberException(String m){
+        super(m);
+    }
 }
