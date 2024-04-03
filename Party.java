@@ -15,7 +15,7 @@ public class Party {
         partyRoster("src\\HW06\\TestMembers.csv", testArray);
        // partyQuestLevel(recruitParty("src\\HW06\\TestMembersClean.csv"));
 
-        getQuest("Veiled Caverns", recruitParty("src\\HW06\\TestMembersClean.csv"));
+        getQuest("Runethorn Shrine", recruitParty("src\\HW06\\TestMembersClean.csv"));
     }
     public static ArrayList<PartyMember> recruitParty (String filePath) throws FileNotFoundException {
         File file = new File(filePath);
@@ -85,20 +85,19 @@ public class Party {
 
             if (line.contains(questToSelect)){
                 partyQuestLevel = partyQuestLevel(partyMembers);
+                String [] splitStringColon = line.split(": ");
+                String questName = splitStringColon[0];
+                String [] splitStringComma = splitStringColon[1].split(", ");
+                int questLevel = Integer.parseInt(splitStringComma[0]);
+                int reward = Integer.parseInt(splitStringComma[1]);
+                if (questLevel < partyQuestLevel){
+                    System.out.println("Success! Your party gained " + reward + " coins. This calls for a trip to the Tavern!");
+                    return removedQuest(questName);
+                } else if (questLevel > partyQuestLevel){
+                    System.out.println("Failure... Your party was defeated. Better Luck Next Time!");
+                    return false;
+                }
             }
-            String [] splitStringColon = line.split(": ");
-            String questName = splitStringColon[0];
-            String [] splitStringComma = splitStringColon[1].split(", ");
-            int questLevel = Integer.parseInt(splitStringComma[0]);
-            int reward = Integer.parseInt(splitStringComma[1]);
-            if (questLevel < partyQuestLevel){
-                System.out.println("Success! Your party gained " + reward + " coins. This calls for a trip to the Tavern!");
-                return removedQuest(questName);
-            } else if (questLevel > partyQuestLevel){
-                System.out.println("Failure... Your party was defeated. Better Luck Next Time!");
-                return false;
-            }
-            questIndex++;
         }
         return true;
     }
