@@ -19,7 +19,7 @@ public class Party {
      * @throws FileNotFoundException exception which is thrown if a file is erroneous
      * @throws QuestNotFoundException exception which is thrown if a quest is not found
      */
-    public static void main(String[] args) throws FileNotFoundException, QuestNotFoundException {
+    public static void main(String[] args) throws IOException, QuestNotFoundException {
         ArrayList<PartyMember> partyArray = new ArrayList<>();
         String partyFilePath = "TestParty.csv";
         Warrior warrior1 = new Warrior("John", 100, 9, "M4A1", 5);
@@ -88,7 +88,8 @@ public class Party {
      * @return boolean representing whether the write was successful
      * @throws FileNotFoundException exception which is thrown if the file is erroneous
      */
-    public static boolean partyRoster(String filePath, ArrayList<PartyMember> partyMembers) throws FileNotFoundException {
+    public static boolean partyRoster(String filePath, ArrayList<PartyMember> partyMembers)
+            throws FileNotFoundException {
         ArrayList<PartyMember> tempArrayList = new ArrayList<>();
         File file = new File(filePath);
         try {
