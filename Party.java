@@ -19,26 +19,12 @@ public class Party {
      * @throws QuestNotFoundException exception which is thrown if a quest is not found
      */
     public static void main(String[] args) throws FileNotFoundException, QuestNotFoundException {
-        ArrayList<PartyMember> partyArray = new ArrayList<>();
-        String partyFilePath = "TestParty.csv";
-        Warrior warrior1 = new Warrior("John", 100, 9, "M4A1", 5);
-        Warrior warrior2 = new Warrior("Josh", 4, 3, "Dagger", 9);
-        Warrior warrior3 = new Warrior("Almond", 57, 10, "Tree", 3);
-        Mage mage1 = new Mage("Borat", 100, 50, 60, 1);
-        Mage mage2 = new Mage("Yoda", 50, 2, 3, 1);
-        Mage mage3 = new Mage("Azamat", 100, 30, 49, 50);
 
-        partyArray.add(warrior1);
-        partyArray.add(warrior2);
-        partyArray.add(warrior3);
-        partyArray.add(mage1);
-        partyArray.add(mage2);
-        partyArray.add(mage3);
+        ArrayList<PartyMember> partyMembers = recruitParty("TestParty.csv");
+        //partyRoster(partyFilePath, partMembers);
 
-        partyRoster(partyFilePath, partyArray);
-        //partyQuestLevel(recruitParty("src\\HW06\\TestMembersClean.csv"));
-        //getQuest("Runethorn Shrine", recruitParty("src\\HW06\\TestMembersClean.csv"));
-        getQuest("End Game", recruitParty(partyFilePath));
+        for ()
+        getQuest("Spire of Misery", recruitParty(partyFilePath));
     }
 
     /**
@@ -49,17 +35,18 @@ public class Party {
      */
     public static ArrayList<PartyMember> recruitParty(String filePath) throws FileNotFoundException {
         File file = new File(filePath);
-        Scanner readCSV = new Scanner(file);
-        if (!file.exists()) {
-            throw new FileNotFoundException("File not found.");
-        }
         ArrayList<PartyMember> partyArr = new ArrayList<>();
-
-        while (readCSV.hasNextLine()) {
-            String lineParser = readCSV.nextLine();
-            partyArr.add(processInfo(lineParser));
+        try{
+            Scanner readCSV = new Scanner(file);
+            while (readCSV.hasNextLine()) {
+                String lineParser = readCSV.nextLine();
+                partyArr.add(processInfo(lineParser));
+            }
+            return partyArr;
+        } catch (FileNotFoundException e) {
+            throw new FileNotFoundException();
         }
-        return partyArr;
+
     }
 
     private static PartyMember processInfo(String characterToProcess) throws InvalidPartyMemberException {
