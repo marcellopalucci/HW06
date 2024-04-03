@@ -129,7 +129,7 @@ public class Party {
         int questIndex = 0;
         File file = new File("quest.csv");
 
-        try{
+        try {
             Scanner scanLine = new Scanner(file);
             while (scanLine.hasNextLine()) {
                 String line = scanLine.nextLine();
@@ -150,7 +150,7 @@ public class Party {
                     }
                 }
             }
-        } catch (FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
             return false;
         }
