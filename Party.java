@@ -19,12 +19,32 @@ public class Party {
      * @throws QuestNotFoundException exception which is thrown if a quest is not found
      */
     public static void main(String[] args) throws FileNotFoundException, QuestNotFoundException {
+        String partyFilePath = "TestParty.csv";
 
-        ArrayList<PartyMember> partyMembers = recruitParty("TestParty.csv");
-        //partyRoster(partyFilePath, partMembers);
+        ArrayList<PartyMember> partyMembers = new ArrayList<PartyMember>();
 
-        for ()
-        getQuest("Spire of Misery", recruitParty(partyFilePath));
+        Warrior warrior1 = new Warrior("John", 100, 9, "M4A1", 5);
+        Warrior warrior2 = new Warrior("Josh", 4, 3, "Dagger", 9);
+        Warrior warrior3 = new Warrior("Almond", 57, 10, "Tree", 3);
+        Mage mage1 = new Mage("Borat", 100, 50, 60, 1);
+        Mage mage2 = new Mage("Yoda", 50, 2, 3, 1);
+        Mage mage3 = new Mage("Azamat", 100, 30, 49, 50);
+
+        partyMembers.add(warrior1);
+        partyMembers.add(warrior2);
+        partyMembers.add(warrior3);
+        partyMembers.add(mage1);
+        partyMembers.add(mage2);
+        partyMembers.add(mage3);
+
+        partyMembers.addAll(recruitParty(partyFilePath));
+
+        partyRoster(partyFilePath, partyMembers);
+
+        for (PartyMember i : partyMembers) {
+            System.out.println(i);
+        }
+        getQuest("End Game", partyMembers);
     }
 
     /**
@@ -36,7 +56,7 @@ public class Party {
     public static ArrayList<PartyMember> recruitParty(String filePath) throws FileNotFoundException {
         File file = new File(filePath);
         ArrayList<PartyMember> partyArr = new ArrayList<>();
-        try{
+        try {
             Scanner readCSV = new Scanner(file);
             while (readCSV.hasNextLine()) {
                 String lineParser = readCSV.nextLine();
@@ -76,21 +96,11 @@ public class Party {
      */
     public static boolean partyRoster(String filePath, ArrayList<PartyMember> partyMembers)
             throws FileNotFoundException {
-        ArrayList<PartyMember> tempArrayList = new ArrayList<>();
         File file = new File(filePath);
-        try {
-            if (file.exists()) {
-                tempArrayList = recruitParty(filePath);
-            }
-        } catch (FileNotFoundException e) {
-            System.out.println(e.getMessage());
-            return false;
-        }
 
         try {
-            tempArrayList.addAll(partyMembers);
             PrintWriter output = new PrintWriter(filePath);
-            for (PartyMember i : tempArrayList) {
+            for (PartyMember i : partyMembers) {
                 output.println(i.toString());
             }
             output.close();
